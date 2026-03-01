@@ -49,7 +49,7 @@ button:hover{
     top:20%;
 }
 
-/* Nombre efecto neón */
+/* Título */
 h1{
     font-size:60px;
     color:#ff1493;
@@ -64,7 +64,7 @@ h1{
     font-size:30px;
     margin-top:20px;
     min-height:50px;
-    color:#ff1493;
+    color:black; /* AQUÍ están negras */
     font-weight:bold;
     animation: fadeUp 2s ease;
 }
@@ -103,11 +103,10 @@ h1{
 </div>
 
 <div id="content">
-    <h1>KRIS 💖</h1>
+    <h1>KRIS MI AMOR 💖</h1>
     <div id="message"></div>
 </div>
 
-<!-- IMPORTANTE: usa nombre simple como cancion.mp3 -->
 <audio id="music" loop>
     <source src="Enrique guzmán-Te seguiré(Letra) [SdcTtonXjf4].mp3" type="audio/mpeg">
 </audio>
@@ -115,7 +114,7 @@ h1{
 <script>
 
 const messages = [
-"TE AMO KRIS❤️",
+"TE AMO KRIS ❤️",
 "Eres lo mejor que me ha pasado 💕",
 "Cada día te amo más 💗",
 "Mi persona favorita 💓",
@@ -125,7 +124,7 @@ const messages = [
 let index = 0;
 
 function startSurprise(){
-    document.body.style.background = "#fff0f5";
+    document.body.style.background = "#ffffff";
     document.getElementById("startScreen").style.display="none";
     document.getElementById("content").style.display="block";
     document.getElementById("music").play();
@@ -136,7 +135,7 @@ function startSurprise(){
 function showMessages(){
     const messageDiv = document.getElementById("message");
     messageDiv.style.animation = "none";
-    void messageDiv.offsetWidth; 
+    void messageDiv.offsetWidth;
     messageDiv.style.animation = "fadeUp 2s ease";
     messageDiv.innerHTML = messages[index];
     index = (index + 1) % messages.length;
