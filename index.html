@@ -13,9 +13,9 @@ body{
     overflow:hidden;
     font-family: Arial, sans-serif;
     text-align:center;
-    color:white;
 }
 
+/* Pantalla inicial */
 #startScreen{
     position:absolute;
     width:100%;
@@ -34,28 +34,57 @@ button{
     color:#ff4e88;
     cursor:pointer;
     box-shadow:0 0 20px rgba(255,255,255,0.8);
+    transition:0.3s;
 }
 
+button:hover{
+    transform:scale(1.1);
+}
+
+/* Contenido sorpresa */
 #content{
     display:none;
     position:absolute;
     width:100%;
-    top:25%;
+    top:20%;
 }
 
+/* Nombre efecto neón */
 h1{
-    font-size:50px;
+    font-size:60px;
+    color:#ff1493;
+    text-shadow:
+        0 0 10px #ff1493,
+        0 0 20px #ff69b4,
+        0 0 40px #ff69b4;
 }
 
+/* Frases */
 #message{
-    font-size:28px;
+    font-size:30px;
     margin-top:20px;
     min-height:50px;
+    color:#ff1493;
+    font-weight:bold;
+    animation: fadeUp 2s ease;
 }
 
+/* Animación frases */
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* Corazones */
 .heart{
     position:absolute;
-    color:red;
+    color:#ff4d6d;
     font-size:20px;
     animation: float 6s linear infinite;
 }
@@ -78,7 +107,7 @@ h1{
     <div id="message"></div>
 </div>
 
-<!-- IMPORTANTE: renombra tu canción a algo simple como cancion.mp3 -->
+<!-- IMPORTANTE: usa nombre simple como cancion.mp3 -->
 <audio id="music" loop>
     <source src="Enrique guzmán-Te seguiré(Letra) [SdcTtonXjf4].mp3" type="audio/mpeg">
 </audio>
@@ -96,6 +125,7 @@ const messages = [
 let index = 0;
 
 function startSurprise(){
+    document.body.style.background = "#fff0f5";
     document.getElementById("startScreen").style.display="none";
     document.getElementById("content").style.display="block";
     document.getElementById("music").play();
@@ -105,6 +135,9 @@ function startSurprise(){
 
 function showMessages(){
     const messageDiv = document.getElementById("message");
+    messageDiv.style.animation = "none";
+    void messageDiv.offsetWidth; 
+    messageDiv.style.animation = "fadeUp 2s ease";
     messageDiv.innerHTML = messages[index];
     index = (index + 1) % messages.length;
     setTimeout(showMessages,3000);
